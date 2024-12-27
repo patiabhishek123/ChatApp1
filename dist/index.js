@@ -10,7 +10,6 @@ wss.on('connection', (socket) => {
         // @ts-ignore
         const parsedMessage = JSON.parse(message);
         if (parsedMessage.type === 'join') {
-            console.log("user wants to join");
             socketArray.push({
                 socket,
                 RoomId: parsedMessage.payload.RoomId
@@ -19,8 +18,6 @@ wss.on('connection', (socket) => {
         }
         let currentUserRoomId = null;
         if (parsedMessage.type === 'chat') {
-            console.log("user wants to chat");
-            console.log("Room joined is: " + parsedMessage.payload.RoomId);
             let currentUserRoomId = null;
             for (let i = 0; i < socketArray.length; i++) {
                 if (socketArray[i].socket === socket) {
